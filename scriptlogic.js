@@ -57,12 +57,14 @@ for(let j in previousTeams){
         
 }
 for(let i = 0; i<teamStorage.length; i+=2){
-    match[j].innerHTML = `${match[j].name} X ${match[j+1].name}` //Corrigir para começar a aparecer os times criados
-    teamsDiv.appendChild(match[j])
+    match[i].innerHTML = `${teamStorage[i].name} X ${teamStorage[i+1].name}` //Corrigir para começar a aparecer os times criados
+    teamsDiv.appendChild(match[i])
 }
     
     }
 }
+
+
 
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
