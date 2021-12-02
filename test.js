@@ -11,7 +11,7 @@ function generateFields(){
 }
 alert(numberOfTeams)
 }
-*/
+
 
 function Times(nome, id){
     this.nome = nome
@@ -25,3 +25,18 @@ for(var i = 0; i < numberTeams-1; i++){
 
 if(team.value.includes(''))
 console.log('vazio')
+*/
+
+var arrayMain = []
+arrayMain [0] = 0
+arrayMain [1] = 1
+arrayMain [2] = 2
+
+function passaArray (array){
+    for(var i = 0; i < arrayMain.length; i++){
+team [i] = arrayMain[i]
+console.log(team[i])
+    }
+}
+
+passaArray(arrayMain)
