@@ -40,7 +40,7 @@ confirmStart.onclick = function(){
 }
 }
 
-function criaTime(name, id){
+function createTeam(name, id){
     this.name = name
     this.id - id
 }
@@ -52,12 +52,12 @@ function knockoutPhase(previousTeams, roundCount){
     document.getElementById("title").innerHTML = 'Set the Score for the current phase!'
     if(roundCount == 1){
 for(let j in previousTeams){
-    teamStorage[j] = new criaTime(previousTeams[j].value,j)
+    teamStorage[j] = new createTeam(previousTeams[j].value,j)
     match[j] = document.createElement("p")
         
 }
 for(let i = 0; i<teamStorage.length; i+=2){
-    match[i].innerHTML = `${teamStorage[i].name} X ${teamStorage[i+1].name}` //Corrigir para começar a aparecer os times criados
+    match[i].innerHTML = `${teamStorage[i].name} X ${teamStorage[i+1].name}` 
     teamsDiv.appendChild(match[i])
 }
     
@@ -72,3 +72,10 @@ function removeAllChildNodes(parent) {
     }
 }
 
+function match(team1, score1, team2, score2){
+    if(score1 > score2){
+        return team1
+    }else if(score2 > score1){
+        return team2
+    }
+}
