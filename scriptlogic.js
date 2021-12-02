@@ -50,21 +50,15 @@ function createTeam(name, id, matchScore, currentPoints){
 
 
 function knockoutPhase(previousTeams, roundCount){
-    let match = []
     removeAllChildNodes(teamsDiv)
     document.getElementById("title").innerHTML = 'Set the Score for the current phase!'
     if(roundCount == 1){
 for(let j in previousTeams){
-    teamStorage[j] = new createTeam(previousTeams[j].value,j)
-    match[j] = document.createElement("p")
-        
+    teamStorage[j] = new createTeam(previousTeams[j].value,j)    
 }
-for(let i = 0; i<teamStorage.length; i+=2){
-    match[i].innerHTML = `${teamStorage[i].name} X ${teamStorage[i+1].name}` 
-    teamsDiv.appendChild(match[i])
-}
-    
     }
+    setRound(teamStorage)
+
 }
 
 
@@ -81,4 +75,27 @@ function match(team1, team2){
     }else if(team2.matchScore > team1.matchScore){
         return team2
     }
+}
+
+function setRound(teams){
+    let match = []
+    let score = []
+for(let i = 0; i < teams.length; i+=2){
+    match[i] = document.createElement("p")
+    teamsDiv.appendChild(match[i])
+    score[i] = document.createElement("input")
+    score[i+1] = document.createElement("input")
+    score[i].type = "number"
+    score[i+1].type = "number"
+    score[i].size = "1"   //Ajustar
+    score[i+1].size = "1" //Ajustar
+
+    match[i].innerHTML = `${teamStorage[i].name} `
+    match[i].appendChild(score[i])
+    match[i].innerHTML += ` X `
+    match[i].appendChild(score[i+1])
+    match[i].innerHTML += ` ${teamStorage[i+1].name}`
+    
+
+}
 }
