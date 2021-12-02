@@ -40,9 +40,12 @@ confirmStart.onclick = function(){
 }
 }
 
-function createTeam(name, id){
+function createTeam(name, id, matchScore, currentPoints){
     this.name = name
     this.id - id
+    this.matchScore = matchScore
+    this.currentPoints = currentPoints
+    
 }
 
 
@@ -72,10 +75,10 @@ function removeAllChildNodes(parent) {
     }
 }
 
-function match(team1, score1, team2, score2){
-    if(score1 > score2){
+function match(team1, team2){
+    if(team1.matchScore > team2.matchScore){
         return team1
-    }else if(score2 > score1){
+    }else if(team2.matchScore > team1.matchScore){
         return team2
     }
 }
