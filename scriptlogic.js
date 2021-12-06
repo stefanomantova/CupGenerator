@@ -54,7 +54,8 @@ function knockoutPhase(previousTeams, roundCount){
     document.getElementById("title").innerHTML = 'Set the Score for the current phase!'
     if(roundCount == 1){
 for(let j in previousTeams){
-    teamStorage[j] = new createTeam(previousTeams[j].value,j)    
+    teamStorage[j] = new createTeam(previousTeams[j].value,j, 0)    
+    
 }
     }
     setRound(teamStorage)
@@ -101,4 +102,17 @@ var buttonNext = document.createElement("input")
 buttonNext.type = 'button'
 buttonNext.value = 'Next round!'
 teamsDiv.appendChild(buttonNext)
+
+buttonNext.onclick = function(){
+    let nextRoundTeams = []
+    for(let j = 0; j < teamStorage.length; j++){
+       teamStorage[j].matchScore = parseInt(score[j].value)
+       alert(teamStorage[j].name + ` fez  ${teamStorage[j].matchScore}`)     //Checar se matchScore ta recebendo os gols
+       
+    }
+    for(var i = 0; i < teams.length; i+=2){
+       nextRoundTeams[i] = match(teams[i], teams[i+1])            //Passar o nome dos times "vencedores" pro array e repassar pro array principal pro proximo round começar
+       alert(nextRoundTeams[i].name)
+    }
+}
 }
