@@ -87,8 +87,8 @@ for(let i = 0; i < teams.length; i+=2){
     score[i+1] = document.createElement("input")
     score[i].type = "number"
     score[i+1].type = "number"
-    score[i].size = "1"   //Ajustar
-    score[i+1].size = "1" //Ajustar
+    score[i].style.width = "32px"   //Ajustar
+    score[i+1].style.width = "32px" //Ajustar
 
     match[i].innerHTML = `${teamStorage[i].name} `
     match[i].appendChild(score[i])
@@ -96,6 +96,9 @@ for(let i = 0; i < teams.length; i+=2){
     match[i].appendChild(score[i+1])
     match[i].innerHTML += ` ${teamStorage[i+1].name}`
     
-
 }
+var buttonNext = document.createElement("input")
+buttonNext.type = 'button'
+buttonNext.value = 'Next round!'
+teamsDiv.appendChild(buttonNext)
 }
