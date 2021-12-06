@@ -54,7 +54,7 @@ function knockoutPhase(previousTeams, roundCount){
     document.getElementById("title").innerHTML = 'Set the Score for the current phase!'
     if(roundCount == 1){
 for(let j in previousTeams){
-    teamStorage[j] = new createTeam(previousTeams[j].value,j, 0)    
+    teamStorage[j] = new createTeam(previousTeams[j].value,j)    
     
 }
     }
@@ -70,7 +70,7 @@ function removeAllChildNodes(parent) {
     }
 }
 
-function match(team1, team2){
+function matchResult(team1, team2){
     if(team1.matchScore > team2.matchScore){
         return team1
     }else if(team2.matchScore > team1.matchScore){
@@ -79,8 +79,8 @@ function match(team1, team2){
 }
 
 function setRound(teams){
-    let match = []
-    let score = []
+    var match = []
+    var score = []
 for(let i = 0; i < teams.length; i+=2){
     match[i] = document.createElement("p")
     teamsDiv.appendChild(match[i])
@@ -98,6 +98,7 @@ for(let i = 0; i < teams.length; i+=2){
     match[i].innerHTML += ` ${teamStorage[i+1].name}`
     
 }
+
 var buttonNext = document.createElement("input")
 buttonNext.type = 'button'
 buttonNext.value = 'Next round!'
@@ -107,12 +108,12 @@ buttonNext.onclick = function(){
     let nextRoundTeams = []
     for(let j = 0; j < teamStorage.length; j++){
        teamStorage[j].matchScore = parseInt(score[j].value)
-       alert(teamStorage[j].name + ` fez  ${teamStorage[j].matchScore}`)     //Checar se matchScore ta recebendo os gols
+       alert(teamStorage[j].matchScore)     //Checar se matchScore ta recebendo os gols
        
     }
-    for(var i = 0; i < teams.length; i+=2){
-       nextRoundTeams[i] = match(teams[i], teams[i+1])            //Passar o nome dos times "vencedores" pro array e repassar pro array principal pro proximo round começar
+    /*for(let i = 0; i < teams.length; i+=2){
+       nextRoundTeams[i] = matchResult(teams[i], teams[i+1])            //Passar o nome dos times "vencedores" pro array e repassar pro array principal pro proximo round começar
        alert(nextRoundTeams[i].name)
-    }
+    }*/
 }
 }
