@@ -81,9 +81,6 @@ function matchResult(team1, team2){
 function setRound(teams){
     var match = []
     var score = []
-
-
-
     
 for(let i = 0; i < teams.length; i+=2){
     match[i] = document.createElement("p")
@@ -92,13 +89,15 @@ for(let i = 0; i < teams.length; i+=2){
     score[i+1] = document.createElement("input")
     score[i].type = "number"
     score[i+1].type = "number"
+    score[i].className = 'score'
+    score[i+1].className = 'score'
     score[i].style.width = "32px"   
     score[i+1].style.width = "32px" 
 
-    match[i].innerHTML = `${teamStorage[i].name}`
-    teamsDiv.appendChild(score[i])
+    match[i].innerHTML = `${teamStorage[i].name} `
+    match[i].appendChild(score[i])
     match[i].innerHTML += ` X `
-    teamsDiv.appendChild(score[i+1])
+    match[i].appendChild(score[i+1])
     match[i].innerHTML += ` ${teamStorage[i+1].name}`
 
     
@@ -119,7 +118,7 @@ buttonNext.onclick = function(){
         if(!score[j]){
             alert("Empty Score!")
         }else{
-        teamStorage[j].matchScore = score[j].value
+        teamStorage[j].matchScore = document.getElementsByClassName('score')[j].value
 
         alert(teamStorage[j].matchScore)
         }
