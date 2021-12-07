@@ -81,6 +81,10 @@ function matchResult(team1, team2){
 function setRound(teams){
     var match = []
     var score = []
+
+
+
+    
 for(let i = 0; i < teams.length; i+=2){
     match[i] = document.createElement("p")
     teamsDiv.appendChild(match[i])
@@ -88,27 +92,38 @@ for(let i = 0; i < teams.length; i+=2){
     score[i+1] = document.createElement("input")
     score[i].type = "number"
     score[i+1].type = "number"
-    score[i].style.width = "32px"   //Ajustar
-    score[i+1].style.width = "32px" //Ajustar
+    score[i].style.width = "32px"   
+    score[i+1].style.width = "32px" 
 
-    match[i].innerHTML = `${teamStorage[i].name} `
-    match[i].appendChild(score[i])
+    match[i].innerHTML = `${teamStorage[i].name}`
+    teamsDiv.appendChild(score[i])
     match[i].innerHTML += ` X `
-    match[i].appendChild(score[i+1])
+    teamsDiv.appendChild(score[i+1])
     match[i].innerHTML += ` ${teamStorage[i+1].name}`
+
+    
     
 }
 
+var buttonNextLine = document.createElement('p')
 var buttonNext = document.createElement("input")
 buttonNext.type = 'button'
 buttonNext.value = 'Next round!'
-teamsDiv.appendChild(buttonNext)
+teamsDiv.appendChild(buttonNextLine)
+buttonNextLine.appendChild(buttonNext)
 
 buttonNext.onclick = function(){
+
     let nextRoundTeams = []
     for(let j = 0; j < teamStorage.length; j++){
-       teamStorage[j].matchScore = parseInt(score[j].value)
-       alert(teamStorage[j].matchScore)     //Checar se matchScore ta recebendo os gols
+        if(!score[j]){
+            alert("Empty Score!")
+        }else{
+        teamStorage[j].matchScore = score[j].value
+
+        alert(teamStorage[j].matchScore)
+        }
+       //alert(teamStorage[j].matchScore)     //Checar se matchScore ta recebendo os gols
        
     }
     /*for(let i = 0; i < teams.length; i+=2){
