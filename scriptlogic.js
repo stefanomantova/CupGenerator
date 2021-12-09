@@ -34,6 +34,8 @@ confirmStart.onclick = function(){
     if(!check){
     alert('Preencha todos os campos')
     }else{
+    setTeamStorage(inputTeams)   
+     
     knockoutPhase(inputTeams,1) //Aqui vai a chamada para a função que inicia a Cup. Inicialmente, apenas a chamada para knockout round. Novas implementações de formatos (league, group cup, etc) podem ser realizadas posteriormente e chamadas aqui
     }
 }
@@ -48,15 +50,19 @@ function createTeam(name, id, matchScore, currentPoints){
     
 }
 
+function setTeamStorage(arrayInput){
+    for(let j in arrayInput){
+        teamStorage[j] = new createTeam(arrayInput[j].value,j)    
+        
+    }
+}
+
 
 function knockoutPhase(previousTeams, roundCount){
     removeAllChildNodes(teamsDiv)
     document.getElementById("title").innerHTML = 'Set the Score for the current phase!'
     if(roundCount == 1){
-for(let j in previousTeams){
-    teamStorage[j] = new createTeam(previousTeams[j].value,j)    
-    
-}
+
     }
     setRound(teamStorage)
 
