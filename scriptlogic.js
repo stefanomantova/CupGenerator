@@ -63,7 +63,6 @@ for(let j in previousTeams){
 }
 
 
-
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild)
@@ -99,8 +98,6 @@ for(let i = 0; i < teams.length; i+=2){
     match[i].innerHTML += ` X `
     match[i].appendChild(score[i+1])
     match[i].innerHTML += ` ${teamStorage[i+1].name}`
-
-    
     
 }
 
@@ -119,21 +116,19 @@ buttonNext.onclick = function processRound(){
             alert("Empty Score!")
         }else{
         teamStorage[j].matchScore = parseInt(document.getElementsByClassName('score')[j].value)
-        //eliminateTeamsFromArray()
         let nextRoundTeams = []
            
         }
         
     }
     eliminateTeamsFromArray()
-   
+      
 }
 }
 
 function eliminateTeamsFromArray(){
     for(let i = 0,  j = 0; i < teamStorage.length; i+=2, j++){
         teamStorage[j] = matchResult(teamStorage[i], teamStorage[i+1])            //Passar o nome dos times "vencedores" pro array e repassar pro array principal pro proximo round começar
-        alert(teamStorage[j].name)
         
      }
      teamStorage.splice(teamStorage.length/2, teamStorage.length/2)
