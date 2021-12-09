@@ -36,7 +36,7 @@ confirmStart.onclick = function(){
     }else{
     setTeamStorage(inputTeams)   
      
-    knockoutPhase(inputTeams,1) //Aqui vai a chamada para a função que inicia a Cup. Inicialmente, apenas a chamada para knockout round. Novas implementações de formatos (league, group cup, etc) podem ser realizadas posteriormente e chamadas aqui
+    knockoutPhase(inputTeams) //Aqui vai a chamada para a função que inicia a Cup. Inicialmente, apenas a chamada para knockout round. Novas implementações de formatos (league, group cup, etc) podem ser realizadas posteriormente e chamadas aqui
     }
 }
 }
@@ -58,14 +58,14 @@ function setTeamStorage(arrayInput){
 }
 
 
-function knockoutPhase(previousTeams, roundCount){
-    removeAllChildNodes(teamsDiv)
+function knockoutPhase(){
     document.getElementById("title").innerHTML = 'Set the Score for the current phase!'
-    if(roundCount == 1){
+    while(teamStorage.length > 1){
+        removeAllChildNodes(teamsDiv)
+        setRound(teamStorage)
 
     }
-    setRound(teamStorage)
-
+    alert("Campeão é "+ teamStorage[0].name)
 }
 
 
