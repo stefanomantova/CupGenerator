@@ -75,6 +75,14 @@ function setRound(teams){
     document.getElementById("title").innerHTML = 'Set the Score for the current phase!'
     var match = []
     var score = []
+    let noMatchTeam
+    
+    if(!isOdd(teamStorage.length)){
+        noMatchTeam = teamStorage.pop()
+        let noMatchDiv = document.createElement("p")
+        noMatchDiv.innerHTML = `${noMatchTeam.name} team awaits for the next round!`
+        teamsDiv.appendChild(noMatchDiv)
+    }
     
 for(let i = 0; i < teams.length; i+=2){
     match[i] = document.createElement("p")
@@ -128,6 +136,9 @@ function eliminateTeamsFromArray(){
 
      }
      teamStorage.splice(teamStorage.length/2, teamStorage.length/2)
+     if(typeof noMatchTeam !== 'undefined' && noMatchTeam){
+         teamStorage.push(noMatchTeam)
+     }
      if(teamStorage.length>1){
          setRound(teamStorage)
      }else{
@@ -135,7 +146,15 @@ function eliminateTeamsFromArray(){
      }
 }
 
+function isOdd(teamArray){
+    if(teamArray.length % 2 == 0){
+        return true
+    }else{
+        return false
+    }
+}
+
 function declareChampion(){
     removeAllChildNodes(teamsDiv)
     document.getElementById("title").innerHTML = `Tournament Ended! The champion is ${teamStorage[0].name}`
-}
+}   
