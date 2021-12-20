@@ -22,7 +22,7 @@ var confirmStart = document.createElement("input")
 confirmStart.type = 'button'
 confirmStart.value = 'Start!'
 teamsDiv.appendChild(confirmStart)
-confirmStart.onclick = function(){
+confirmStart.onclick = function startTournament(){
     var check = new Boolean(true)
     for(let i in inputTeams){
     if(inputTeams[i].value==''){
@@ -77,7 +77,7 @@ function setRound(teams){
     var score = []
     let noMatchTeam
     
-    if(!isOdd(teamStorage.length)){
+    if(!isOdd(teamStorage)){
         noMatchTeam = teamStorage.pop()
         let noMatchDiv = document.createElement("p")
         noMatchDiv.innerHTML = `${noMatchTeam.name} team awaits for the next round!`
@@ -114,8 +114,9 @@ buttonNextLine.appendChild(buttonNext)
 buttonNext.onclick = function processRound(){
     
     for(let j = 0; j < teamStorage.length; j++){
-        if(!score[j]){
-            alert("Empty Score!")
+        if(document.getElementsByClassName('score')[j].value === ""||parseInt(document.getElementsByClassName('score')[j].value) < 0){
+            alert("Invalid Score!")
+            startTournament()
         }else{
         teamStorage[j].matchScore = parseInt(document.getElementsByClassName('score')[j].value)
         
@@ -123,21 +124,21 @@ buttonNext.onclick = function processRound(){
         }
 
     }
-    eliminateTeamsFromArray()
+    eliminateTeamsFromArray(noMatchTeam)
 
       
 }
 }
 
-function eliminateTeamsFromArray(){
+function eliminateTeamsFromArray(noMatchTeam){
     for(let i = 0,  j = 0; i < teamStorage.length; i+=2, j++){
         teamStorage[j] = matchResult(teamStorage[i], teamStorage[i+1])            //Passar o nome dos times "vencedores" pro array e repassar pro array principal pro proximo round começar
         
 
      }
      teamStorage.splice(teamStorage.length/2, teamStorage.length/2)
-     if(typeof noMatchTeam !== 'undefined' && noMatchTeam){
-         teamStorage.push(noMatchTeam)
+     if(!(noMatchTeam===undefined)){
+         teamStorage.unshift(noMatchTeam)
      }
      if(teamStorage.length>1){
          setRound(teamStorage)
