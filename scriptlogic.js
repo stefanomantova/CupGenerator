@@ -37,12 +37,12 @@ confirmStart.onclick = function startTournament(){
 }
 }
 }
-function createTeam(name, id, matchScore, currentPoints){
+function createTeam(name, id, matchScore, currentPoints, penaltyScore){
     this.name = name
     this.id - id
     this.matchScore = matchScore
     this.currentPoints = currentPoints
-    
+    this.penaltyScore = penaltyScore
 }
 function knockoutPhase(previousTeams){
     removeAllChildNodes(teamsDiv)
@@ -63,13 +63,34 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild)
     }
 }
-function matchResult(team1, team2){
+function matchResult(team1, team2, penaltyBoolean, matchId){
     if(team1.matchScore > team2.matchScore){
         return team1
     }else if(team2.matchScore > team1.matchScore){
         return team2
+    }else{
+        if(penaltyBoolean){
+           return penaltyMatchResult(team1, team2, matchId)
+        }
     }
 }
+
+function penaltyMatchResult(team1, team2, matchId){
+    let winnerTeam
+    do{
+winnerTeam = prompt(`Penalty Shootout for ${team1.name} X ${team2.name}, who is the winner?`)
+    }while(winnerTeam != team1.name && winnerTeam !=team2.name)
+    
+if(winnerTeam == team1.name){
+    return team1
+}else if(winnerTeam == team2.name){
+    return team2
+}else{
+    penaltyMatchResult(team1, team2)
+}
+
+}
+
 function setRound(teams){
     removeAllChildNodes(teamsDiv)
     document.getElementById("title").innerHTML = 'Set the Score for the current phase!'
@@ -86,6 +107,7 @@ function setRound(teams){
     
 for(let i = 0; i < teams.length; i+=2){
     match[i] = document.createElement("p")
+    match[i].className = 'match'
     teamsDiv.appendChild(match[i])
     score[i] = document.createElement("input")
     score[i+1] = document.createElement("input")
@@ -132,7 +154,7 @@ buttonNext.onclick = function processRound(){
 
 function eliminateTeamsFromArray(noMatchTeam){
     for(let i = 0,  j = 0; i < teamStorage.length; i+=2, j++){
-        teamStorage[j] = matchResult(teamStorage[i], teamStorage[i+1])            //Passar o nome dos times "vencedores" pro array e repassar pro array principal pro proximo round começar
+        teamStorage[j] = matchResult(teamStorage[i], teamStorage[i+1], true,j)        
         
 
      }
@@ -157,5 +179,5 @@ function isOdd(teamArray){
 
 function declareChampion(){
     removeAllChildNodes(teamsDiv)
-    document.getElementById("title").innerHTML = `Tournament Ended! The champion is ${teamStorage[0].name}`
+    document.getElementById("title").innerHTML = `Tournament Ended! The champion is:`+`<br/>`+`${teamStorage[0].name}`
 }   
