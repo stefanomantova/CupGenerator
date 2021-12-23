@@ -4,7 +4,7 @@ function generateFields(){
     
     var numberOfTeams = parseInt(numberTeams.value)
     if(!numberOfTeams || numberOfTeams<2){
-        alert('Número de times inválido!')
+        alert('Invalid quantity of teams!')
     }else{
     var inputTeams = []
 for(let cont = 0; cont < numberOfTeams; cont++){
@@ -32,7 +32,7 @@ confirmStart.onclick = function startTournament(){
     if(!check){
     alert('Preencha todos os campos')
     }else{
-    knockoutPhase(inputTeams) //Aqui vai a chamada para a função que inicia a Cup. Inicialmente, apenas a chamada para knockout round. Novas implementações de formatos (league, group cup, etc) podem ser realizadas posteriormente e chamadas aqui
+    knockoutPhase(inputTeams) //May include further calling for future additional features
     }
 }
 }
