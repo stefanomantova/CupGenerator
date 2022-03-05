@@ -5,4 +5,6 @@ Current Beta Version 0.1 objective: Exercise DOM manipulation via plain Javascri
 
 This first usable version includes a fully working simple knockout tournament simulator. It is possible to add multiple teams and decide tie games in penalty shootouts. Further released may include better styling or additional features such as different modalities or double knockout modes.
 
-Please contact me in case of any suggestions or bug reporting :)
+Demo deployment: https://stefanomantova.github.io/CupGenerator/
+
+Please reach me out in case of any enhancement suggestions or bug reporting :)
